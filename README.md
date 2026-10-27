@@ -8,7 +8,7 @@ This repository publishes the program's source so anyone can read exactly what t
 deployed program does. It contains only the on-chain program; the website and backend
 are not part of it.
 
-| | |
+| Item | Value |
 |---|---|
 | **Program (mainnet)** | [`JetvDoU56t5vU6vo4RCkYmFUCatnQpLeXNWsuzxA4Cj`](https://solscan.io/account/JetvDoU56t5vU6vo4RCkYmFUCatnQpLeXNWsuzxA4Cj) |
 | **Upgrade authority** | [`6KUisCkQ7kC5ijJgRgahUjqPtnZoiFPrvgF1ouS621PE`](https://solscan.io/account/6KUisCkQ7kC5ijJgRgahUjqPtnZoiFPrvgF1ouS621PE) — a 2-of-3 Squads multisig |
