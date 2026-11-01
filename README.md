@@ -5,7 +5,7 @@ launch an SPL token in one transaction, trade it on a bonding curve, and graduat
 Raydium automatically.
 
 This repository publishes the program's source so anyone can read exactly what the
-deployed program does. It contains only the on-chain program; the website and backend
+deployed program does. It contains only the on-chain program; the website, backend, API and MCP server
 are not part of it.
 
 | Item | Value |
@@ -68,6 +68,45 @@ completes entirely or does nothing.
 | `execute_buyback` | anyone, once the buyback vault holds ≥ 0.1 SOL |
 | `withdraw_creator_fees` | the token's creator |
 | `graduate` (legacy fallback) | the 2-of-3 multisig only |
+
+## For bots and AI agents
+
+Bots and AI agents can trade JetForge tokens with no API key. No endpoint or tool can move
+funds: trades come back as unsigned transactions, which the caller's own wallet signs and
+broadcasts. JetForge never receives private keys.
+
+**MCP server** (Streamable HTTP): `https://jetforge.io/api/mcp`
+
+```bash
+claude mcp add --transport http jetforge https://jetforge.io/api/mcp
+```
+
+For other MCP clients:
+
+```json
+{
+  "mcpServers": {
+    "jetforge": {
+      "type": "http",
+      "url": "https://jetforge.io/api/mcp"
+    }
+  }
+}
+```
+
+| Tool | What it does |
+|---|---|
+| `list_markets` | Active tokens with live price, reserves and graduation progress |
+| `get_quote` | Prices a buy or sell from the live bonding curve |
+| `prepare_trade` | Builds an unsigned buy or sell transaction |
+| `get_wallet` | Returns a wallet's SOL and token balances |
+
+**REST API:** `https://jetforge.io/api/v1`, limited to 300 requests per minute per IP. See the
+[API docs and examples](https://jetforge.io/docs/api) and the
+[OpenAPI spec](https://jetforge.io/api/v1/openapi.json).
+
+Never give a private key to an MCP server, including this one. Limit how much an agent's
+wallet holds, and check each transaction before it's signed.
 
 ## Building
 
